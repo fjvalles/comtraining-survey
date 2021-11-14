@@ -1,0 +1,37 @@
+<div style="width:90%;margin:auto">
+  <center><h1><%= @survey.title %></h1></center>
+  <p><%= @survey.description %></p>
+  <input type="hidden" name="response[survey_id]" value="<%= @survey.id %>">
+  <% index = 0 %>
+  <center><h2>Preguntas demográficas</h2></center>
+  <% @survey.questions.ver_radio.each_with_index do |q, i| %>
+    <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+    <h4><%= i + 1 %>. <%= '* ' if q.required %><%= q.title %></h4>
+    <% q.options.each_with_index do |o| %>
+      <div>
+        <input type="radio" id="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"
+          name="response[answers_attributes][<%=index%>][option_ids][]" value="<%=o.id%>" />
+        <label for="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"><span></span><%= o.title if o.title.present? %></label>
+      </div>
+    <% end %>
+    <% index += 1 %>
+  <% end %>
+  <center><h2>Cuestionario</h2></center>
+  <% @survey.questions.hor_radio.each_with_index do |q, i| %>
+    <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+    <h4><%= i + 1 %>. <%= '* ' if q.required %><%= q.title %></h4>
+    <% q.options.each_with_index do |o, j| %>
+      <input type="radio" id="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"
+        name="response[answers_attributes][<%=index%>][option_ids][]" value="<%=o.id%>" />
+      <label for="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"><span></span><%= o.title if o.title.present? %></label>
+    <% end %>
+    <% index += 1 %>
+  <% end %>
+  <center><h2>Preguntas abiertas</h2></center>
+  <% @survey.questions.text.each_with_index do |q, i| %>
+    <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+    <h4><%= i + 1 %>. <%= '* ' if q.required %><%= q.title %></h4>
+    <textarea name="response[answers_attributes][<%=index%>][a_text]" class="form-control" rows="5"></textarea>
+    <% index += 1 %>
+  <% end %>
+</div>

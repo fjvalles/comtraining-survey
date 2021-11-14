@@ -1,0 +1,28 @@
+<tr class="nested-fields">
+  <td class="text-center">
+    <%= f.input :order, input_html: { class: 'form-control',
+      placeholder: 'Orden' }, required: true, label: false %>
+  </td>
+  <td>
+    <%= f.input :title, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :scale, collection: Question.scales.collect { |r| [Question.human_attribute_name("scale.#{r[0]}"), r[0]] },
+      selected: f.object.scale || @survey.questionnaire_scale, input_html: { class: 'form-control' },
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :proficiency_id, collection: @survey.proficiencies.collect { |p| [p.name, p.id] },
+      input_html: { class: 'form-control' }, label: false %>
+  </td>
+  <td>
+    <%= f.input :q_type, collection: Question.q_types.collect { |r| [Question.human_attribute_name("q_type.#{r[0]}"), r[0]] },
+      selected: f.object.q_type || @survey.aligment, input_html: { class: 'form-control' },
+      label: false %>
+  </td>
+  <td class="text-center">
+    <%= link_to_remove_association "<i class='fa fa-trash'></i>".html_safe,
+      f, class: 'btn btn-danger', title: 'Eliminar' %>
+  </td>
+</tr>

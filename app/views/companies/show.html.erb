@@ -1,0 +1,77 @@
+<%= link_to raw("<i class='fa fa-arrow-left'></i>"), :back, class: 'btn btn-default' %>
+<h3>PERFIL EMPRESA</h3><br>
+<div style="margin:auto;width:70%">
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag @company.logo.variant(:medium), style: 'height:300px;width:300px' %>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead class="red-head">
+        <th>Tipo encuesta</th>
+        <th class="col-md-1 text-center">Cantidad</th>
+      </thead>
+      <tbody>
+        <% Survey.s_types.each do |a, b| %>
+          <tr>
+            <td><%= a %></td>
+            <td class="text-center"><%= Survey.where(company: @company, s_type: a).length %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Nombre:</td>
+      <td><%= @company.name %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Gerente general:</td>
+      <td><%= @company.ceo %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Sector industrial:</td>
+      <td><%= @company.industry %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Dirección:</td>
+      <td><%= @company.address %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Región:</td>
+      <td><%= @company.region %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Provincia:</td>
+      <td><%= @company.province %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Comuna:</td>
+      <td><%= @company.commune %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">País:</td>
+      <td><%= @company.country %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">RUT:</td>
+      <td><%= @company.identity_number %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Sitio web:</td>
+      <td><%= @company.url %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Correo electrónico de contacto:</td>
+      <td><%= @company.contact_email %></td>
+    </tr>
+    <tr>
+      <td class="col-md-4" style="background-color:#E22C29;color:white">Teléfono:</td>
+      <td><%= @company.phone %></td>
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,33 @@
+<h1>Usuarios</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo electrónico</th>
+      <th>Rol</th>
+      <th>Número socio</th>
+      <th>Estado</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody id="trip-notices-list">
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= u.full_name %></td>
+        <td><%= u.email %></td>
+        <td><%= t(u.role) %></td>
+        <td><%= u.member_number %></td>
+        <td><%= u.active ? 'Activo' : 'Inactivo' %></td>
+        </td>
+        <td class="text-right">
+          <%= link_to raw('<i class="fa fa-eye"></i>'),
+            user_path(u, request: 'preview'), class: "btn btn-info", title: "Ver" %>
+          <%= link_to raw('<i class="fa fa-edit"></i>'),
+            edit_user_path(u), title: "Editar", class: "btn btn-warning" %>
+          <%= link_to raw('<i class="fa fa-trash"></i>'), user_path(u),
+            class: "btn btn-danger", title: "Eliminar", method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>

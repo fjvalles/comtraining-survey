@@ -1,0 +1,76 @@
+<div id="main-wlcm" style="width:90%;margin:auto">
+  <center><h1><%= @survey.title %></h1></center>
+  <br><br>
+  <p><%= raw @survey.instructions %></p>
+  <br><br>
+  <%= link_to 'Comenzar', '#', class: 'btn btn-primary pull-right', id: 'wlcm_next' %>
+</div>
+
+<div id="main-survey" style="width:90%;margin:auto;display:none">
+  <%= simple_form_for(@response, url: survey_responses_path(@survey)) do |f| %>
+    <%= f.error_notification %>
+    <input type="hidden" name="response[survey_id]" value="<%= @survey.id %>">
+    <% index = 0 %>
+
+    <% if @survey.questions.demo.present? %>
+      <div id="demographic-resp">
+        <center><h2><%= @survey.demographic_title %></h2></center>
+        <% @survey.questions.demo.each_with_index do |q, i| %>
+          <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+          <h4><%= i + 1 %>. <%= q.title %></h4>
+          <% q.options.each_with_index do |o| %>
+            <div>
+              <input type="radio" id="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"
+                name="response[answers_attributes][<%=index%>][option_ids][]" value="<%=o.id%>" />
+              <label for="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"><span></span><%= o.title if o.title.present? %></label>
+            </div>
+          <% end %>
+          <% index += 1 %>
+        <% end %>
+        <%= link_to 'Aceptar y Continuar', '#', class: 'btn btn-danger pull-right', id: 'demo_next' %>
+      </div>
+    <% end %>
+    <div id="questionnaire-resp" style="display:none">
+      <table class="table table-bordered" style="width:100%">
+        <thead>
+          <tr>
+            <th style="background-color:grey;color:#E22C29" colspan="2"><%= @survey.questionaire_title %></th>
+            <% @survey.quest_default(@survey.questionnaire_scale).options.each do |qd| %>
+              <th style="width:20%;text-align:center;background-color:#E22C29;color:white"><%= qd.title %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @survey.questions.where.not(q_type: [:demo, :text]).each_with_index do |q, i| %>
+            <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+            <tr style="<%= i%2 == 0 ? 'background-color:lightgrey !important' : '' %>">
+              <td><%= i + 1 %>.</td>
+              <td><%= q.title %></td>
+              <% q.options.each_with_index do |o, j| %>
+                <td style="width:20%;text-align:center">
+                  <input type="radio" id="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"
+                    name="response[answers_attributes][<%=index%>][option_ids][]" value="<%=o.id%>" />
+                  <label for="response_answers_attributes_<%=index%>_option_ids_<%=o.id%>"><span></span><%#= o.title if o.title.present? %></label>
+                </td>
+              <% end %>
+            </tr>
+            <% index += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Aceptar y Continuar', '#', class: 'btn btn-danger pull-right', id: 'questions_next' %>
+    </div>
+    <div id="open-quest-resp" style="display:none">
+      <center><h2><%= @survey.open_questions_title %></h2></center>
+      <% @survey.questions.text.each_with_index do |q, i| %>
+        <input type="hidden" name="response[answers_attributes][<%=index%>][question_id]" value="<%= q.id %>">
+        <h4><%= i + 1 %>. <%= q.title %></h4>
+        <textarea name="response[answers_attributes][<%=index%>][a_text]" class="form-control" rows="5"></textarea>
+        <% index += 1 %>
+      <% end %>
+      <div class="form-actions row">
+        <%= f.submit 'Enviar Encuesta', class: 'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
+</div>

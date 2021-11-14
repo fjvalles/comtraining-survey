@@ -1,0 +1,5 @@
+<div class="nested-fields">
+  <%= f.simple_fields_for :options do |option| %>
+    <%= render 'option_fields', f: option %>
+  <% end %>
+</div>

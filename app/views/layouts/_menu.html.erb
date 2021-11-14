@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to root_url, 'data-turbolinks': false, class: 'navbar-brand' do %>
+      <%= image_pack_tag("media/images/logo_red.png", height: '50') %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="config-menu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Configuración
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="config-menu">
+            <li><%= link_to 'Empresas', companies_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Formatos Generales', gnrl_format_surveys_path, 'data-turbolinks': false, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Formato Escala Respueta', answer_scale_surveys_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Preguntas Demográficas', demo_quest_surveys_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Factores/Competencias', proficiencies_surveys_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Preguntas', questionnaire_surveys_path, class: 'dropdown-item' %></li>
+          </ul>
+        </li>
+        <li class="nav-item"><%= link_to 'Registro', surveys_path, class: 'nav-link' %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="capture-menu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Captura datos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="capture-menu">
+            <li><%= link_to 'Lista de Participantes', participants_surveys_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Evaluadores 360', evaluators_surveys_path, class: 'dropdown-item' %></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="reports-menu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reportes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="reports-menu">
+            <li>Por Dato Demográfico</li>
+            <li>Por Factor/Competencia</li>
+            <li>Por Gerencia/Área</li>
+            <li>Por Pregunta</li>
+            <li>Por Evaluado</li>
+            <li>Comparativo Histórico</li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="account-menu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.full_name %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="account-menu">
+            <li>
+              <%= link_to 'Perfil', me_users_path, class: 'dropdown-item' %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

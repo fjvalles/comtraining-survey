@@ -1,0 +1,13 @@
+<div style="width:90%;margin:auto">
+  <center><h2>Preguntas abiertas</h2></center>
+  <br><br>
+  <% @survey.questions.text.order(order: :asc).each_with_index do |q, i| %>
+    <div class="row">
+      <h4><%= i + 1 %>. <%= '* ' if q.required %><%= q.title %></h4>
+      <textarea class="form-control" rows="5"></textarea>
+    </div>
+    <br>
+  <% end %>
+  <br><br>
+  <%= link_to 'Siguiente', confirmation_survey_path, class: 'btn btn-primary pull-right' %>
+</div>

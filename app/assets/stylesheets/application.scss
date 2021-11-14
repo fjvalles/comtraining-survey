@@ -1,0 +1,249 @@
+@import "bootstrap/scss/bootstrap.scss";
+@import 'bootstrap-datetimepicker';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// @import 'libs/vars';
+// @import 'libs/functions';
+// @import 'libs/mixins';
+// @import 'libs/skel';
+// @import 'dataTables/jquery.dataTables';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import "actiontext";
+
+
+
+
+
+@media print {
+  body {
+    display: none;
+  }
+}
+
+body {
+  // margin-top: 90px;
+	// padding-top: 50px !important;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+	background-color: white;
+  height: 100%;
+}
+
+h3 {
+  color: red;
+}
+
+hr {
+  border: 2px solid red;
+}
+
+.radio-inline {
+  margin-top: 10px !important;
+}
+
+textarea {
+  resize: none;
+}
+
+// Simple form
+.error, .error_notification {
+  background-color: #BE3738;
+  color: white;
+  border-radius: 3px;
+  padding: 3px;
+  display: block;
+}
+
+.image-preview-input {
+  position: relative;
+	overflow: hidden;
+	margin: 0px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+  margin-left:2px;
+}
+
+.btn-main:hover {
+	background-color: #1fcaa7;
+	color: white !important;
+}
+.btn-main {
+	text-decoration: none;
+}
+.login-btn {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+}
+
+a {
+	border-bottom: none;
+}
+
+.dropdown-menu li a {
+  border: none !important;
+  width: 100%;
+}
+
+.dropdown-menu li a:hover {
+  border-radius: 0 !important;
+  background-color: #E22C29 !important;
+  color: white !important;
+}
+
+nav.navbar-inverse {
+	border: none;
+	.navbar-brand {
+		height: inherit;
+	}
+	a {
+		text-decoration: none;
+	}
+	.navbar-right {
+		margin-top: 15px;
+	}
+	.navbar-left {
+		margin-top: 30px;
+		li {
+			margin-left: 20px
+		}
+	}
+	.dropdown.login {
+		ul, a {
+			background-color: transparent !important;
+		}
+		.dropdown-menu {
+			padding: 0;
+		}
+		.dropdown-menu::before {
+			content: "";
+			border-bottom: 10px solid #1faaa7;
+			border-right: 10px solid transparent;
+			border-left: 10px solid transparent;
+			position: absolute;
+			top: -10px;
+			right: 16px;
+			z-index: 10;
+		}
+		form {
+			margin: 0;
+		}
+		li {
+			border: 1px solid white;
+			border-radius: 4px;
+			padding: 10px;
+			input[type=submit] {
+				width: 100%;
+			}
+		}
+	}
+}
+
+textarea, tr {
+	background-color: transparent !important;
+}
+
+#notice {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+}
+
+div.radio_buttons {
+  label.radio_buttons {
+    display: block;
+  }
+  span.radio {
+    margin-right: 15px;
+  }
+}
+
+select, input {
+	color: #1faaa7;
+}
+
+.login .dropdown-menu {
+	margin-top: 25px !important;
+}
+
+.subnav {
+	background-color: gainsboro;
+	margin: 0;
+	button, a {
+		color: black !important;
+		background-color: transparent;
+		border: none;
+	}
+	.navbar-inner {
+		margin-top: 5px;
+	}
+	ul {
+		margin: 0;
+	}
+}
+
+.navbar-inner li a {
+  background-color: transparent;
+}
+
+.btn-default:hover, .navbar-inner li a:hover {
+	background-color: white;
+  border-radius: 4px;
+}
+
+.red-head tr {
+  background-color: #E22C29 !important;
+  color: white;
+}
+
+.form-required {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+footer {
+  color: white;
+  margin-top: 30px;
+  a {
+    color: white;
+  }
+  .icons li {
+    display: inline;
+  }
+  .social {
+    div {
+      padding: 0;
+    }
+    .icons {
+      padding: 0;
+    }
+    padding: 15px 80px;
+    background-color: grey;
+  }
+  .copyright {
+    padding: 15px 80px;
+    background-color: black;
+  }
+}

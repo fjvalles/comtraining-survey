@@ -1,0 +1,29 @@
+es:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: ''
+    error_notification:
+      default_message: "Por favor revise los problemas a continuación:"
+    labels:
+      user:
+        new:
+          first_name: 'Nombre'
+          last_name: 'Apellido'
+          birthday: 'Fecha de nacimiento'
+          gender: 'Género'
+          phone: 'Teléfono'
+          active: 'Estado'
+          email: 'Correo electrónico'
+          role: 'Tipo de usuario'
+        edit:
+          first_name: 'Nombre'
+          last_name: 'Apellido'
+          birthday: 'Fecha de nacimiento'
+          gender: 'Género'
+          phone: 'Teléfono'
+          active: 'Estado'
+          email: 'Correo electrónico'
+          role: 'Tipo de usuario'

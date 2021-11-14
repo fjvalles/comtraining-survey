@@ -1,0 +1,33 @@
+<%= f.error_notification %>
+<div class="form-group row">
+  <%= f.input :title, input_html: { class: 'form-control',
+    placeholder: 'Título' }, label: false, required: true %>
+</div>
+<div class="form-group row">
+  <%= f.rich_text_area :description, input_html: { class: 'form-control',
+    rows: 5, placeholder: 'Descripción', ckeditor: { toolbar: 'Full' } },
+    label: false, required: true, as: :ckeditor %>
+</div>
+<div class="form-group row">
+  <div>
+    <input type="radio" id="survey_active_true" name="survey[active]" value="true"
+      checked="<%= @survey.active %>"/>
+    <label for="survey_active_true"><span></span>Activo</label>
+  </div>
+  <div>
+    <input type="radio" id="survey_active_false" name="survey[active]" value="false"
+      checked="<%= @survey.active %>"/>
+    <label for="survey_active_false"><span></span>Inactivo</label>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.simple_fields_for :questions do |question| %>
+    <%= render 'question_fields', f: question %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association 'Agregar pregunta', f, :questions, class: 'btn-main text-center', style: 'margin-top:20px' %>
+  </div>
+</div>
+<div class="form-actions row">
+  <%= f.button :submit, class: 'btn btn-success' %>
+</div>

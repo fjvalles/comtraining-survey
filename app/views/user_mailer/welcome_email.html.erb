@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {background-color: #edeff1;color: #34495F;text-align:center;font-family:Helvetica}
+      #init-msg {font-size:24px;width:50%;margin:auto}
+      #welcome-div {background-color: #34495F;color: white;border-radius:4px;text-align:center;padding:50px 30px;display:inline-block;}
+      #logo-img {border-radius:100px;width:150px}
+      #msg-title {font-size:45px;font-weight:bold;}
+      #profile-link:hover {color: #1abc9c !important;}
+      #profile-link {background-color: white;color: #34495F;text-decoration:none;padding:10px 20px;font-weight:bold;border-radius:4px}
+    </style>
+  </head>
+  <body>
+    <br><br>
+    <p id="init-msg">Hola <b><%= @user.first_name %></b>, se ha creado de manera exitosa una cuenta para ti.</p>
+    <br>
+    <div id="welcome-div">
+      <%= image_pack_tag('media/images/logo_white.jpg', id: 'logo-img') %>
+      <p id="msg-title">Bienvenido</p>
+      <p>¡El <b>Club Andino Universitario</b> te da la bienvenida!<p>
+      <p>Los datos de tu cuenta son los siguientes:</p>
+      <p>
+        correo electrónico: <b><%= @user.email %></b><br>
+        contraseña: <b><%= @password %></b>
+      </p>
+      <br><br>
+      <p><%= link_to "IR A MI PERFIL", me_users_url, id: 'profile-link' %></p>
+    </div>
+    <br><br>
+  </body>
+</html>

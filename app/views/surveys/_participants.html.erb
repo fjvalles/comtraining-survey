@@ -1,0 +1,51 @@
+<%= simple_form_for(@survey, url: create_or_update_surveys_path, method: :post) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>LISTA DE PARTICIPANTES</h3>
+    </div>
+    <div class="col-md-6">
+      <div class="links">
+        <%= link_to_add_association raw("<i class='fa fa-plus'></i>"), f, :employees,
+          class: 'btn btn-success pull-right', partial: 'employee_fields',
+          'data-association-insertion-method': 'append',
+          'data-association-insertion-node': '.table-items' %>
+        </div>
+      </div>
+    </div>
+    <br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :company_id, collection: Company.all.collect {|p| [p.name, p.id]}.sort {|a,b| a<=>b},
+        selected: @current_company, input_html: { class: 'form-control cia-part', 'data-placeholder': 'Empresa' },
+        label: 'NOMBRE EMPRESA', required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :s_type, collection: Survey.s_types.collect { |ct| [Survey.human_attribute_name("s_type.#{ct[0]}"), ct[0]] },
+        selected: @current_s_type, required: true, label: 'TIPO ENCUESTA',
+        input_html: { class: 'form-control cia-type' } %>
+    </div>
+  </div>
+  <br>
+  <table class="table table-bordered">
+    <thead class="red-head">
+      <tr>
+        <th class="col-md-1">ID</th>
+        <th>NOMBRES</th>
+        <th>APELLIDOS</th>
+        <th>EMAIL</th>
+        <th>CARGO</th>
+        <th>ÁREA</th>
+        <th>ESTADO</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-items">
+      <%= f.simple_fields_for :employees do |employee| %>
+        <%= render 'employee_fields', f: employee %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= f.submit 'Guardar', class: 'btn btn-danger pull-right' %>
+<% end %>

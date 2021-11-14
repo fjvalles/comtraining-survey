@@ -1,0 +1,70 @@
+<%= simple_form_for(@company) do |f| %>
+  <%= f.error_notification %>
+  <div class="text-center">
+    <img height="300px" id="avatar" src="<%= (@company.logo.attached? and !@company.logo_updated_at_changed?)? @company.logo.variant(:medium) : image_pack_tag('media/images/default-profile.jpg') %>">
+  </div>
+  <div class="input-group user-img image-preview text-center" style="width:30%;left:35%">
+    <input type="text" class="form-control image-preview-filename" disabled="disabled">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default image-preview-clear">
+        <span class="fa fa-trash"></span> Quitar
+      </button>
+      <div class="btn btn-default image-preview-input">
+        <span class="fa fa-folder-open"></span>
+        <span class="image-preview-input-title">Buscar</span>
+        <%= f.input :logo, as: :file, label: false %>
+      </div>
+    </span>
+  </div>
+  <div class="form-group">
+    <%= f.input :name, input_html: { class: 'form-control' },
+      label: 'NOMBRE EMPRESA' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :ceo, input_html: { class: 'form-control' },
+      label: 'GERENTE GENERAL' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :industry, input_html: { class: 'form-control' },
+      label: 'SECTOR INDUSTRIAL' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :address, input_html: { class: 'form-control' },
+      label: 'DIRECCIÓN' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :region, input_html: { class: 'form-control' },
+      label: 'REGIÓN' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :province, input_html: { class: 'form-control' },
+      label: 'PROVINCIA' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :commune, input_html: { class: 'form-control' },
+      label: 'COMUNA' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :country, input_html: { class: 'form-control' },
+      label: 'PAÍS' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :identity_number, input_html: { class: 'form-control' },
+      label: 'RUT' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :url, input_html: { class: 'form-control' },
+      label: 'SITIO WEB' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :contact_email, input_html: { class: 'form-control' },
+      label: 'CORREO ELECTRÓNICO DE CONTACTO' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :phone, input_html: { class: 'form-control' },
+      label: 'TELÉFONO' %>
+  </div>
+  <div class="form-actions row">
+    <%= f.submit 'Guardar', class: 'btn btn-danger pull-right' %>
+  </div>
+<% end %>

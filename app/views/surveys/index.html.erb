@@ -1,0 +1,50 @@
+<h3>REGISTRO ENCUESTAS</h3>
+<table class="table table-striped datatable">
+  <thead class="red-head">
+    <tr>
+      <th>Empresa</th>
+      <th>Tipo Encuesta</th>
+      <th>Nombre</th>
+      <th>Fecha Actualización</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Cierre</th>
+      <th>Estado</th>
+      <th class="col-md-1"># Encuestas respondidas</th>
+      <th class="col-md-2">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @surveys.each do |survey| %>
+      <tr>
+        <td><%= survey.company.present? ? survey.company.name : '-' %></td>
+        <td><%= t(survey.s_type) %></td>
+        <td><%= survey.title %></td>
+        <td><%= survey.updated_at.strftime('%d-%m-%Y') %></td>
+        <td><%= survey.start_date.strftime('%d-%m-%Y') if survey.start_date.present? %></td>
+        <td><%= survey.end_date.strftime('%d-%m-%Y') if survey.end_date.present? %></td>
+        <td><%= survey.status %></td>
+        <td><%#= survey.responses_count.to_s + '/' + survey.participants_count %></td>
+        <td class="text-center">
+          <%= link_to raw('<i class="fa fa-eye"></i>'),
+            survey_path(survey), 'data-turbolinks': false, class: "btn btn-info",
+            title: "Ver" %>
+          <%= link_to raw('<i class="fa fa-edit"></i>'),
+            edit_survey_path(survey), 'data-turbolinks': false, title: "Editar",
+            class: "btn btn-warning" if survey.status == 'Diseño' %>
+          <%= link_to raw('<i class="fa fa-trash"></i>'),
+            survey_path(survey), class: "btn btn-danger", title: "Eliminar",
+            method: :delete, data: { confirm: '¿Estás seguro?' } if survey.status == 'Diseño' %>
+          <%= link_to raw('<i class="fa fa-question-circle"></i>'),
+            new_response_surveys_path(token: survey.token), class: 'btn btn-info',
+            title: 'Responder', target: '_blank' if survey.status == 'En Desarrollo' %>
+          <%= link_to raw('<i class="fa fa-user"></i>'),
+            evaluators_surveys_path, class: 'btn btn-primary',
+            title: 'Evaluadores' %>
+          <%= link_to raw('<i class="fa fa-chart-bar"></i>'),
+            '#', class: 'btn btn-success',
+            title: 'Reporte' if survey.status == 'Cerrada' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

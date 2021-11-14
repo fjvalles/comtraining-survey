@@ -1,0 +1,32 @@
+<div style="width:90%;margin:auto">
+  <center><h2>Cuestionario</h2></center>
+  <br><br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Muy de acuerdo</th>
+        <th>De acuerdo</th>
+        <th>Neutral</th>
+        <th>En desacuerdo</th>
+        <th>Muy en desacuerdo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @survey.questions.hradio.order(order: :asc).each_with_index do |q, i| %>
+        <tr>
+          <td>
+            <h4><%= i + 1 %>. <%= '* ' if q.required %><%= q.title %></h4>
+          </td>
+          <% q.options.each_with_index do |o, j| %>
+            <td>
+              <input type="radio" id="question_<%= i+1 %>_option_<%= j+1 %>" name="question_<%= i+1 %>" />
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br><br>
+  <%= link_to 'Siguiente', section3_survey_path, class: 'btn btn-primary pull-right' %>
+</div>

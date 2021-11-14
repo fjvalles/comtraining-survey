@@ -1,0 +1,47 @@
+<tr class="nested-fields" id="<%= DateTime.now.to_s.gsub('-','').gsub(':','') + rand(10000).to_s %>">
+  <td class="text-center">
+    <%= f.input :order, input_html: { class: 'form-control',
+      placeholder: 'Orden' }, required: true, label: false %>
+    <p>CI: <%= f.options[:child_index] %></p>
+  </td>
+  <td>
+    <%= f.input :title, input_html: { class: 'form-control',
+      placeholder: 'Título' }, required: true, label: false %>
+    <%= f.input :q_type, collection: Question.q_types.collect { |r| [Question.human_attribute_name("q_type.#{r[0]}"), r[0]] },
+      selected: @quest_type, label: false, input_html: { style: 'display:none' } %>
+  </td>
+  <td class="text-center">
+    <%# @q_id = DateTime.now.to_s.gsub('-','').gsub(':','') + rand(10000).to_s %>
+    <%#= @q_id = questid %>
+    <% @q_id = 'asdj' %>
+    <%= link_to_add_association raw("<i class='fa fa-plus'></i>"), f, :options,
+      class: 'btn btn-success add-assoc', partial: 'option_fields',
+      'data-association-insertion-method': 'append', title: 'Agregar Opción',
+      'data-association-insertion-node': '#'+@q_id+'_collapse .option-items' %>
+    <%= link_to_remove_association "<i class='fa fa-trash'></i>".html_safe,
+      f, class: 'btn btn-danger rm-assoc', title: 'Eliminar' %>
+    <%= link_to raw("<i class='fa fa-arrows-alt'></i>"), '#'+@q_id+'_collapse',
+      class: "btn btn-primary col-assoc", role: "button", 'data-toggle': "collapse",
+      'aria-expanded': "true", 'aria-controls': @q_id+"_collapse",
+      title: 'Expandir/Colapsar', id: @q_id+"_collapse_btn" %>
+  </td>
+</tr>
+<tr class="collapse" id="<%= @q_id %>_collapse">
+  <td></td>
+  <td colspan="2" style="padding:0">
+    <table class="table table-bordered" style="margin:0">
+      <thead class="red-head">
+        <tr>
+          <th>OPCIÓN</th>
+          <th>LEYENDA</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="option-items">
+        <%= f.simple_fields_for :options do |option| %>
+          <%= render 'option_fields', f: option %>
+        <% end %>
+      </tbody>
+    </table>
+  </td>
+</tr>

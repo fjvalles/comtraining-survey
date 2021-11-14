@@ -1,0 +1,68 @@
+<h3>FORMATOS GENERALES</h3><br>
+<%= simple_form_for(@survey, url: create_or_update_surveys_path, method: :post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :company_id, collection: Company.all.collect {|p| [p.name, p.id]}.sort {|a,b| a<=>b},
+        selected: @current_company, input_html: { class: 'form-control cia-gnrl' },
+        label: 'NOMBRE EMPRESA', required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :title, input_html: { class: 'form-control',
+        placeholder: 'Nombre' }, label: 'NOMBRE ENCUESTA', required: true %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :s_type, collection: Survey.s_types.collect { |ct| [Survey.human_attribute_name("s_type.#{ct[0]}"), ct[0]] },
+        selected: @current_s_type, required: true, label: 'TIPO ENCUESTA',
+        input_html: { class: 'form-control cia-type' } %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :start_date, input_html: { class: 'form-control' }, label: 'FECHA INICIO',
+        required: true, as: :date, html5: true %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :end_date, input_html: { class: 'form-control' }, label: 'FECHA CIERRE',
+      required: true, as: :date, html5: true %>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :welcome_msg, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' },
+        label: 'MENSAJE DE BIENVENIDA', required: true, as: :rich_text_area %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :instructions, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' },
+        label: 'MENSAJE DE INSTRUCCIONES', required: true, as: :rich_text_area %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :demographic_title, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO PREGUNTAS DEMOGRÁFICAS', required: true %>
+      <br>
+      <%= f.input :questionaire_title, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO CUESTIONARIO', required: true %>
+      <br>
+      <%= f.input :open_questions_title, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO PREGUNTAS ABIERTAS', required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= f.rich_text_area :goodbye_msg, input_html: { class: 'form-control',
+        rows: 5, placeholder: 'Descripción' , ckeditor: { toolbar: 'mini' } },
+        label: 'MENSAJE FIN DE EVALUACIÓN/ENCUESTA', required: true, as: :ckeditor %>
+    </div>
+  </div>
+  <br>
+  <div class="form-actions row">
+    <%= f.submit 'Guardar', class: 'btn btn-danger pull-right' %>
+  </div>
+<% end %>

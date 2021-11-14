@@ -1,0 +1,35 @@
+<tr class="nested-fields">
+  <td class="text-center"><%= f.input :id, disabled: true, label: false %></td>
+  <td>
+    <%= f.input :first_name, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :last_name, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :work_email, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :job_title, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <td>
+    <%= f.input :work_area, input_html: { class: 'form-control' }, required: true,
+      label: false %>
+  </td>
+  <% if params[:action] == 'participants' %>
+    <td></td>
+  <% else %>
+    <td>
+      <%= f.input :evaluator_id, collection: Employee.where.not(id: f.object.id).collect { |e| [e.full_name + ' - ' + e.job_title, e.id] },
+        input_html: { class: 'form-control' }, required: true, label: false %>
+    </td>
+  <% end %>
+  <td class="text-center">
+    <%= link_to_remove_association "<i class='fa fa-trash'></i>".html_safe,
+      f, class: 'btn btn-danger', title: 'Eliminar' %>
+  </td>
+</tr>

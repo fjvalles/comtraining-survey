@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema de Encuestas - Comtraining</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <%= render "layouts/menu" %>
+    <% end %>
+    <div id="notice">
+      <%= bootstrap_flash %>
+    </div>
+    <div class="container-fluid p-5" style="min-height: calc(100vh - 180px)">
+      <%= yield %>
+    </div>
+    <%= render "layouts/footer" %>
+  </body>
+</html>
