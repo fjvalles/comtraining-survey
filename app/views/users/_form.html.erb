@@ -1,21 +1,3 @@
-<div class="row text-center" style="height:100px">
-  <img height="100%" id="avatar" src="<%= (@user.avatar.attached? and !@user.avatar_updated_at_changed?)? @user.avatar.variant(:medium) : image_pack_tag('media/images/default-profile.jpg') %>">
-</div>
-<br>
-<div class="input-group user-img image-preview text-center" style="width:30%;left:35%">
-  <input type="text" class="form-control image-preview-filename" disabled="disabled">
-  <span class="input-group-btn">
-    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-      <span class="fa fa-trash"></span> Quitar
-    </button>
-    <div class="btn btn-default image-preview-input">
-      <span class="fa fa-folder-open"></span>
-      <span class="image-preview-input-title">Buscar</span>
-      <%= f.file_field :avatar, required: true %>
-    </div>
-  </span>
-</div>
-
 <div class="form-group row" style="padding:10px;margin:0">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <%= f.input :first_name, input_html: { class: 'form-control',
@@ -28,23 +10,12 @@
 </div>
 <div class="form-group row" style="padding:10px;margin:0">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <%= f.input :birthday, input_html: { class: 'form-control', data: {
-      date_options: { format: 'DD/MM/YYYY' } } },
-      required: true, as: :date_picker %>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <%= f.input :gender, collection: User.genders.collect { |ct| [User.human_attribute_name("gender.#{ct[0]}"), ct[0]] },
-      as: :radio_buttons, item_wrapper_class: 'inline', required: true %>
-  </div>
-</div>
-<div class="form-group row" style="padding:10px;margin:0">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <%= f.input :phone, input_html: { class: 'form-control',
-      placeholder: '+569...' }, required: true %>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <%= f.input :email, input_html: { class: 'form-control',
       placeholder: 'Correo electrónico' }, required: true %>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <%= f.input :role, collection: User.roles.collect { |r| [User.human_attribute_name("role.#{r[0]}"), r[0]] },
+      input_html: { class: 'form-control ctype' }, prompt: 'Tipo de usuario' %>
   </div>
 </div>
 <% if current_user.admin? %>
@@ -52,10 +23,6 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
       <%= f.input :active, collection: [['Activo', true],['Inactivo', false]],
         as: :radio_buttons, item_wrapper_class: 'inline', required: true %>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <%= f.input :role, collection: User.roles.collect { |r| [User.human_attribute_name("role.#{r[0]}"), r[0]] },
-        input_html: { class: 'form-control ctype' }, prompt: 'Tipo de usuario' %>
     </div>
   </div>
 <% end %>

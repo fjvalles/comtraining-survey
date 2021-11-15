@@ -12,12 +12,15 @@
 
   <body>
     <% if user_signed_in? %>
+      <% offset = "180px" %>
       <%= render "layouts/menu" %>
+    <% else %>
+      <% offset = "104px" %>
     <% end %>
     <div id="notice">
       <%= bootstrap_flash %>
     </div>
-    <div class="container-fluid p-5" style="min-height: calc(100vh - 180px)">
+    <div class="container-fluid p-5" style="min-height: calc(100vh - <%= offset %>)">
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>

@@ -2,15 +2,13 @@
   <%= f.error_notification %>
   <div class="row">
     <div class="col-md-6">
-      <h3>LISTA DE PARTICIPANTES</h3>
+      <h3>Lista de participantes</h3>
     </div>
-    <div class="col-md-6">
-      <div class="links">
-        <%= link_to_add_association raw("<i class='fa fa-plus'></i>"), f, :employees,
-          class: 'btn btn-success pull-right', partial: 'employee_fields',
-          'data-association-insertion-method': 'append',
-          'data-association-insertion-node': '.table-items' %>
-        </div>
+    <div class="col-md-6 d-flex flex-row-reverse">
+      <%= link_to_add_association raw("<i class='fa fa-plus'></i> Agregar"), f, :employees,
+        class: 'btn btn-success pull-right', partial: 'employee_fields',
+        'data-association-insertion-method': 'append',
+        'data-association-insertion-node': '.table-items' %>
       </div>
     </div>
     <br>
@@ -19,11 +17,11 @@
     <div class="col-md-6">
       <%= f.input :company_id, collection: Company.all.collect {|p| [p.name, p.id]}.sort {|a,b| a<=>b},
         selected: @current_company, input_html: { class: 'form-control cia-part', 'data-placeholder': 'Empresa' },
-        label: 'NOMBRE EMPRESA', required: true %>
+        label: 'Nombre empresa', required: true %>
     </div>
     <div class="col-md-6">
       <%= f.input :s_type, collection: Survey.s_types.collect { |ct| [Survey.human_attribute_name("s_type.#{ct[0]}"), ct[0]] },
-        selected: @current_s_type, required: true, label: 'TIPO ENCUESTA',
+        selected: @current_s_type, required: true, label: 'Tipo encuesta',
         input_html: { class: 'form-control cia-type' } %>
     </div>
   </div>

@@ -14,7 +14,7 @@
     <%# @q_id = DateTime.now.to_s.gsub('-','').gsub(':','') + rand(10000).to_s %>
     <%#= @q_id = questid %>
     <% @q_id = 'asdj' %>
-    <%= link_to_add_association raw("<i class='fa fa-plus'></i>"), f, :options,
+    <%= link_to_add_association raw("<i class='fa fa-plus'></i> Agregar"), f, :options,
       class: 'btn btn-success add-assoc', partial: 'option_fields',
       'data-association-insertion-method': 'append', title: 'Agregar Opción',
       'data-association-insertion-node': '#'+@q_id+'_collapse .option-items' %>

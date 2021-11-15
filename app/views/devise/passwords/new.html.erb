@@ -1,27 +1,23 @@
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="panel panel-default" style="background-color:transparent">
+<div class="card border border-2 m-auto p-3" style="max-width:600px">
+  <div class="card-body">
+    <div class="text-center">
+      <h3><i style="font-size:50px" class="fa fa-lock"></i></h3>
+      <h2 class="text-center"><%= t(".forgot_your_password") %></h2>
+      <p>Puede resetear su contraseña aquí.</p>
       <div class="panel-body">
-        <div class="text-center">
-          <h3><i style="font-size:50px" class="fa fa-lock"></i></h3>
-          <h2 class="text-center"><%= t(".forgot_your_password") %></h2>
-          <p>Puede resetear su contraseña aquí.</p>
-          <div class="panel-body">
-            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name),
-            html: { method: :post }, class: 'form') do |f| %>
-              <div class="form-group">
-                <%= f.input :email, input_html: { class:'form-control' },
-                  label: false, placeholder: 'Correo electrónico', required: true,
-                  autofocus: true %>
-              </div>
-
-              <div class="form-group">
-                <%= f.button :submit, t(".send_me_reset_password_instructions"),
-                class:'btn-main' %>
-              </div>
-            <% end %>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name),
+        html: { method: :post }, class: 'form') do |f| %>
+          <div class="form-group">
+            <%= f.input :email, input_html: { class:'form-control' },
+              label: false, placeholder: 'Correo electrónico', required: true,
+              autofocus: true %>
           </div>
-        </div>
+
+          <div class="form-group mt-3">
+            <%= f.button :submit, t(".send_me_reset_password_instructions"),
+            class:'btn btn-danger' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

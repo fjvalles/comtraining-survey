@@ -1,4 +1,4 @@
-<h3>FORMATOS GENERALES</h3><br>
+<h3>Formatos generales</h3><br>
 <%= simple_form_for(@survey, url: create_or_update_surveys_path, method: :post) do |f| %>
   <%= f.error_notification %>
 
@@ -6,26 +6,25 @@
     <div class="col-md-6">
       <%= f.input :company_id, collection: Company.all.collect {|p| [p.name, p.id]}.sort {|a,b| a<=>b},
         selected: @current_company, input_html: { class: 'form-control cia-gnrl' },
-        label: 'NOMBRE EMPRESA', required: true %>
+        label: 'Nombre empresa', required: true %>
     </div>
     <div class="col-md-6">
-      <%= f.input :title, input_html: { class: 'form-control',
-        placeholder: 'Nombre' }, label: 'NOMBRE ENCUESTA', required: true %>
+      <%= f.input :title, input_html: { class: 'form-control' }, label: 'Nombre encuesta', required: true %>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-6">
       <%= f.input :s_type, collection: Survey.s_types.collect { |ct| [Survey.human_attribute_name("s_type.#{ct[0]}"), ct[0]] },
-        selected: @current_s_type, required: true, label: 'TIPO ENCUESTA',
+        selected: @current_s_type, required: true, label: 'Tipo encuesta',
         input_html: { class: 'form-control cia-type' } %>
     </div>
     <div class="col-md-3">
-      <%= f.input :start_date, input_html: { class: 'form-control' }, label: 'FECHA INICIO',
+      <%= f.input :start_date, input_html: { class: 'form-control' }, label: 'Fecha inicio',
         required: true, as: :date, html5: true %>
     </div>
     <div class="col-md-3">
-      <%= f.input :end_date, input_html: { class: 'form-control' }, label: 'FECHA CIERRE',
+      <%= f.input :end_date, input_html: { class: 'form-control' }, label: 'Fecha cierre',
       required: true, as: :date, html5: true %>
     </div>
   </div>
@@ -33,32 +32,29 @@
   <hr>
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :welcome_msg, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' },
-        label: 'MENSAJE DE BIENVENIDA', required: true, as: :rich_text_area %>
+      <%= f.input :welcome_msg, input_html: { class: 'form-control', rows: 5 },
+        label: 'Mensaje de bienvenida', required: true, as: :rich_text_area %>
     </div>
     <div class="col-md-6">
-      <%= f.input :instructions, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' },
-        label: 'MENSAJE DE INSTRUCCIONES', required: true, as: :rich_text_area %>
+      <%= f.input :instructions, input_html: { class: 'form-control', rows: 5 },
+        label: 'Instrucciones', required: true, as: :rich_text_area %>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :demographic_title, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO PREGUNTAS DEMOGRÁFICAS', required: true %>
+      <%= f.input :demographic_title, input_html: { class: 'form-control', rows: 5 }, 
+        label: 'Encabezado preguntas demográficas', required: true %>
       <br>
-      <%= f.input :questionaire_title, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO CUESTIONARIO', required: true %>
+      <%= f.input :questionaire_title, input_html: { class: 'form-control', rows: 5 }, 
+        label: 'Encabezado cuestionario', required: true %>
       <br>
-      <%= f.input :open_questions_title, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' }, label: 'ENCABEZADO PREGUNTAS ABIERTAS', required: true %>
+      <%= f.input :open_questions_title, input_html: { class: 'form-control', rows: 5 }, 
+        label: 'Encabezado preguntas abiertas', required: true %>
     </div>
     <div class="col-md-6">
-      <%= f.rich_text_area :goodbye_msg, input_html: { class: 'form-control',
-        rows: 5, placeholder: 'Descripción' , ckeditor: { toolbar: 'mini' } },
-        label: 'MENSAJE FIN DE EVALUACIÓN/ENCUESTA', required: true, as: :ckeditor %>
+      <%= f.input :goodbye_msg, input_html: { class: 'form-control', rows: 5 }, 
+        label: 'Mensaje fin de encuesta', required: true, as: :rich_text_area %>
     </div>
   </div>
   <br>
